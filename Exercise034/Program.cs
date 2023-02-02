@@ -45,7 +45,6 @@ int countEvenNumbers(int[] arrNum)
     }
   }
   return count;
-
 }
 int N = amountElements();
 int[] arr = genArray(N);
