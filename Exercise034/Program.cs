@@ -14,7 +14,7 @@ int[] genArray(int N)
 
 void printArray(int N, int result)
 {
-  Console.Write($"[{String.Join(",", genArray(N))}] количество чётных чисел в массиве -> {result}\n");
+  Console.Write($"[{String.Join(", ", genArray(N))}] количество чётных чисел в массиве -> {result}\n");
 }
 
 int amountElements()
