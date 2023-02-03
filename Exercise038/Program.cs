@@ -2,17 +2,17 @@
 // [3 7 22 2 78] -> 76
 
 
-float[] genArray(int N)
+int[] genArray(int N)
 {
-  float[] arrNum = new float[N];
+  int[] arrNum = new int[N];
 
   Random rnd = new Random();
-  for (int i = 0; i < arrNum.Length; arrNum[i++] = rnd.Next(-99, 100)) { }
+  for (int i = 0; i < arrNum.Length; arrNum[i++] = rnd.Next(1, 100)) { }
 
   return arrNum;
 }
 
-void printArray(int N, float result)
+void printArray(int N, int result)
 {
   Console.Write($"[{String.Join(", ", genArray(N))}] разница между максимальным и минимальным элементом массива -> {result}\n");
 }
@@ -35,10 +35,10 @@ int amountElements()
   return varValue;
 }
 
-float sumMinMax(float[] arrNum)
+int diffMinMax(int[] arrNum)
 {
-  float min = arrNum[0];
-  float max = arrNum[0];
+  int min = arrNum[0];
+  int max = arrNum[0];
 
   for (int i = 1; i < arrNum.Length; i++)
   {
@@ -51,10 +51,9 @@ float sumMinMax(float[] arrNum)
       max = arrNum[i];
     }
   }
-Console.WriteLine( $"{max}, {min}");
   return max - min;
 }
 int N = amountElements();
-float[] arr = genArray(N);
-float result = sumMinMax(arr);
+int[] arr = genArray(N);
+int result = diffMinMax(arr);
 printArray(N, result);
