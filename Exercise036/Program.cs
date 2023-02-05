@@ -31,7 +31,7 @@ void PrintArray(int[] arrayPrint)
 int sumOddElements(int[] sumArray)
 {
   int sum = 0;
-  for (int i = 0; i < sumArray.Length; i = i + 2)
+  for (int i = 1; i < sumArray.Length; i = i + 2)
   {
     sum = sum + sumArray[i];
   }
