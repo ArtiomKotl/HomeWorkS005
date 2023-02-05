@@ -2,7 +2,6 @@
 // [3 7 22 2 78] -> 76
 
 
-//Создание случайного массива
 int[] CreateRandomArray(int num)
 {
   int[] array = new int[num];
@@ -14,11 +13,10 @@ int[] CreateRandomArray(int num)
   return array;
 }
 
-//Печать массива на экран
 void PrintArray(int[] arrayPrint)
 {
   Console.Write("Полученный массив: [");
-    for (int index = 0; index < arrayPrint.Length; index++)
+  for (int index = 0; index < arrayPrint.Length; index++)
   {
     Console.Write($"{arrayPrint[index]}");
     if (index < arrayPrint.Length - 1)
@@ -26,10 +24,9 @@ void PrintArray(int[] arrayPrint)
       Console.Write(", ");
     }
   }
-    Console.WriteLine("]");
+  Console.WriteLine("]");
 }
 
-//Поиск разницы между макисмальным и минимальным элементами
 void DifferentMaxMinArray(int[] differentArray)
 {
   int min = differentArray[0];
