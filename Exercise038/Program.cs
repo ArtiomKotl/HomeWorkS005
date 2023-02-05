@@ -2,18 +2,18 @@
 // [3 7 22 2 78] -> 76
 
 
-int[] CreateRandomArray(int num)
+float[] CreateRandomArray(int num)
 {
-  int[] array = new int[num];
-  Random randome = new Random();
+  float[] array = new float[num];
+  Random random = new Random();
   for (int i = 0; i < array.Length; i++)
   {
-    array[i] = randome.Next(1, 100);
+    array[i] = random.NextSingle()*100 ;
   }
   return array;
 }
 
-void PrintArray(int[] arrayPrint)
+void PrintArray(float[] arrayPrint)
 {
   Console.Write("Полученный массив: [");
   for (int index = 0; index < arrayPrint.Length; index++)
@@ -27,10 +27,11 @@ void PrintArray(int[] arrayPrint)
   Console.WriteLine("]");
 }
 
-void DifferentMaxMinArray(int[] differentArray)
+void DifferentMaxMinArray(float[] differentArray)
 {
-  int min = differentArray[0];
-  int max = differentArray[0];
+  float diff = 0;
+  float min = differentArray[0];
+  float max = differentArray[0];
   for (int i = 1; i < differentArray.Length; i++)
   {
     if (min > differentArray[i])
@@ -38,9 +39,11 @@ void DifferentMaxMinArray(int[] differentArray)
     else if (max < differentArray[i])
       max = differentArray[i];
   }
+  diff = max - min;
+  string result = string.Format("{0:f}", diff);
   Console.WriteLine($"Максимальное значение = {max}");
   Console.WriteLine($"Минимальное значение  = {min}");
-  Console.WriteLine($"Разница между максимальным и минимальным элементов массива = {max - min}");
+  Console.WriteLine($"Разница между максимальным и минимальным элементов массива = {result})");
 }
 
 Console.Write("Введите количество элементов массива: ");
@@ -50,6 +53,6 @@ while (num <= 0)
   Console.WriteLine("Введено неверное значение. Попробуйте ещё раз.");
   int.TryParse(Console.ReadLine(), out num);
 }
-int[] maxMinArray = CreateRandomArray(num);
+float[] maxMinArray = CreateRandomArray(num);
 PrintArray(maxMinArray);
 DifferentMaxMinArray(maxMinArray);
