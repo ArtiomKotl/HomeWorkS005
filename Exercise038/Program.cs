@@ -2,58 +2,57 @@
 // [3 7 22 2 78] -> 76
 
 
-int[] genArray(int N)
+//Создание случайного массива
+int[] CreateRandomArray(int num)
 {
-  int[] arrNum = new int[N];
-
-  Random rnd = new Random();
-  for (int i = 0; i < arrNum.Length; arrNum[i++] = rnd.Next(1, 100)) { }
-
-  return arrNum;
-}
-
-void printArray(int N, int result)
-{
-  Console.Write($"[{String.Join(", ", genArray(N))}] разница между максимальным и минимальным элементом массива -> {result}\n");
-}
-
-int amountElements()
-{
-  int varValue = 0;
-  bool isNumeric = false;
-
-  while (!isNumeric)
+  int[] array = new int[num];
+  Random randome = new Random();
+  for (int i = 0; i < array.Length; i++)
   {
-    Console.Write($"Введите число элементов массива: ");
-    isNumeric = int.TryParse(Console.ReadLine(), out varValue);
-    if (varValue < 0)
+    array[i] = randome.Next(1, 100);
+  }
+  return array;
+}
+
+//Печать массива на экран
+void PrintArray(int[] arrayPrint)
+{
+  Console.Write("Полученный массив: [");
+    for (int index = 0; index < arrayPrint.Length; index++)
+  {
+    Console.Write($"{arrayPrint[index]}");
+    if (index < arrayPrint.Length - 1)
     {
-      isNumeric = false;
+      Console.Write(", ");
     }
   }
-
-  return varValue;
+    Console.WriteLine("]");
 }
 
-int diffMinMax(int[] arrNum)
+//Поиск разницы между макисмальным и минимальным элементами
+void DifferentMaxMinArray(int[] differentArray)
 {
-  int min = arrNum[0];
-  int max = arrNum[0];
-
-  for (int i = 1; i < arrNum.Length; i++)
+  int min = differentArray[0];
+  int max = differentArray[0];
+  for (int i = 1; i < differentArray.Length; i++)
   {
-    if (min > arrNum[i])
-    {
-      min = arrNum[i];
-    }
-    else if (max < arrNum[i])
-    {
-      max = arrNum[i];
-    }
+    if (min > differentArray[i])
+      min = differentArray[i];
+    else if (max < differentArray[i])
+      max = differentArray[i];
   }
-  return max - min;
+  Console.WriteLine($"Максимальное значение = {max}");
+  Console.WriteLine($"Минимальное значение  = {min}");
+  Console.WriteLine($"Разница между максимальным и минимальным элементов массива = {max - min}");
 }
-int N = amountElements();
-int[] arr = genArray(N);
-int result = diffMinMax(arr);
-printArray(N, result);
+
+Console.Write("Введите количество элементов массива: ");
+int.TryParse(Console.ReadLine(), out int num);
+while (num <= 0)
+{
+  Console.WriteLine("Введено неверное значение. Попробуйте ещё раз.");
+  int.TryParse(Console.ReadLine(), out num);
+}
+int[] maxMinArray = CreateRandomArray(num);
+PrintArray(maxMinArray);
+DifferentMaxMinArray(maxMinArray);
