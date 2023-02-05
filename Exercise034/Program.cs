@@ -2,51 +2,49 @@
 // Напишите программу, которая покажет количество чётных чисел в массиве.
 // [345, 897, 568, 234] -> 2
 
-int[] genArray(int N)
+int[] CreateRandomArray(int num)
 {
-  int[] arrNum = new int[N];
-
-  Random rnd = new Random();
-  for (int i = 0; i < arrNum.Length; arrNum[i++] = rnd.Next(100, 1000)) { }
-
-  return arrNum;
-}
-
-void printArray(int N, int result)
-{
-  Console.Write($"[{String.Join(", ", genArray(N))}] количество чётных чисел в массиве -> {result}\n");
-}
-
-int amountElements()
-{
-  int varValue = 0;
-  bool isNumeric = false;
-
-  while (!isNumeric)
+  int[] array = new int[num];
+  Random random = new Random();
+  for (int i = 0; i < array.Length; i++)
   {
-    Console.Write($"Введите число элементов массива: ");
-    isNumeric = int.TryParse(Console.ReadLine(), out varValue);
-    if (varValue < 0)
+    array[i] = random.Next(100, 1000);
+  }
+  return array;
+}
+
+void PrintArray(int[] arrayPrint)
+{
+  Console.Write("Полученный массив: [");
+  for (int index = 0; index < arrayPrint.Length; index++)
+  {
+    Console.Write($"{arrayPrint[index]}");
+    if (index < arrayPrint.Length - 1)
     {
-      isNumeric = false;
+      Console.Write(", ");
     }
   }
+  Console.WriteLine("]");
+}
 
-  return varValue;
-}
-int countEvenNumbers(int[] arrNum)
+int countEvenNumbers(int[] evenArray)
 {
-  int count = 0;
-  for (int i = 0; i < arrNum.Length; i++)
-  {
-    if (arrNum[i] % 2 == 0)
+    int count = 0;
+    for (int i = 0; i < evenArray.Length; i++)
     {
-      count++;
+        if (evenArray[i] % 2 == 0)
+            count++;
     }
-  }
-  return count;
+    return count;
 }
-int N = amountElements();
-int[] arr = genArray(N);
-int result = countEvenNumbers(arr);
-printArray(N, result);
+
+Console.Write("Введите количество элементов массива: ");
+int.TryParse(Console.ReadLine(), out int num);
+while (num <= 0)
+{
+    Console.WriteLine("Введено значение неверное значение. Попробуйте ещё раз.");
+    int.TryParse(Console.ReadLine(), out num);
+}
+int[] randomArray = CreateRandomArray(num);
+PrintArray(randomArray);
+Console.WriteLine($"Количество чётных чисел в массиве = {countEvenNumbers(randomArray)}");
