@@ -3,48 +3,48 @@
 // [-4, -6, 89, 6] -> 0
 
 
-int[] genArray(int N)
+int[] CreateRandomArray(int num)
 {
-  int[] arrNum = new int[N];
-
-  Random rnd = new Random();
-  for (int i = 0; i < arrNum.Length; arrNum[i++] = rnd.Next(-99, 100)) { }
-
-  return arrNum;
-}
-
-void printArray(int N, int result)
-{
-  Console.Write($"[{String.Join(", ", genArray(N))}] сумма элементов, стоящих на нечётных позициях -> {result}\n");
-}
-
-int amountElements()
-{
-  int varValue = 0;
-  bool isNumeric = false;
-
-  while (!isNumeric)
+  int[] array = new int[num];
+  Random random = new Random();
+  for (int i = 0; i < array.Length; i++)
   {
-    Console.Write($"Введите число элементов массива: ");
-    isNumeric = int.TryParse(Console.ReadLine(), out varValue);
-    if (varValue < 0)
+    array[i] = random.Next(-99, 100);
+  }
+  return array;
+}
+
+void PrintArray(int[] arrayPrint)
+{
+  Console.Write("Полученный массив: [");
+  for (int index = 0; index < arrayPrint.Length; index++)
+  {
+    Console.Write($"{arrayPrint[index]}");
+    if (index < arrayPrint.Length - 1)
     {
-      isNumeric = false;
+      Console.Write(", ");
     }
   }
-
-  return varValue;
+  Console.WriteLine("]");
 }
-int sumOddElements(int[] arrNum)
+
+int sumOddElements(int[] sumArray)
 {
   int sum = 0;
-  for (int i = 0; i < arrNum.Length; i = i + 2)
+  for (int i = 0; i < sumArray.Length; i = i + 2)
   {
-    sum = sum + arrNum[i];
+    sum = sum + sumArray[i];
   }
   return sum;
 }
-int N = amountElements();
-int[] arr = genArray(N);
-int result = sumOddElements(arr);
-printArray(N, result);
+
+Console.Write("Введите количество элементов массива: ");
+int.TryParse(Console.ReadLine(), out int num);
+while (num <= 0)
+{
+  Console.WriteLine("Введено значение неверное значение. Попробуйте ещё раз.");
+  int.TryParse(Console.ReadLine(), out num);
+}
+int[] randomArray = CreateRandomArray(num);
+PrintArray(randomArray);
+Console.WriteLine($"Сумма нечётных элементов массива = {sumOddElements(randomArray)}");
