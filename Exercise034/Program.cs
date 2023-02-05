@@ -29,21 +29,21 @@ void PrintArray(int[] arrayPrint)
 
 int countEvenNumbers(int[] evenArray)
 {
-    int count = 0;
-    for (int i = 0; i < evenArray.Length; i++)
-    {
-        if (evenArray[i] % 2 == 0)
-            count++;
-    }
-    return count;
+  int count = 0;
+  for (int i = 0; i < evenArray.Length; i++)
+  {
+    if (evenArray[i] % 2 == 0)
+      count++;
+  }
+  return count;
 }
 
 Console.Write("Введите количество элементов массива: ");
 int.TryParse(Console.ReadLine(), out int num);
 while (num <= 0)
 {
-    Console.WriteLine("Введено значение неверное значение. Попробуйте ещё раз.");
-    int.TryParse(Console.ReadLine(), out num);
+  Console.WriteLine("Введено значение неверное значение. Попробуйте ещё раз.");
+  int.TryParse(Console.ReadLine(), out num);
 }
 int[] randomArray = CreateRandomArray(num);
 PrintArray(randomArray);
